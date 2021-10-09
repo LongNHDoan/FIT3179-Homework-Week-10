@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 500,
-  "height": 200,
+  "width": 600,
+  "height": 300,
   "title": "CO2 Emision by Industries",
   "data": {
     "url": "https://raw.githubusercontent.com/LongNHDoan/FIT3179-Homework-Week-10/main/IndustryCo2.csv"
@@ -30,16 +30,29 @@
       }
     }
   ],
-  "mark": {"type": "area", "line": {"color": "darkgreen"}},
+  "mark": {
+    "type": "area",
+    "line": {
+      "color": "darkgreen"
+    }
+  },
   "transform": [
-    {"filter": "year(datum.year)<maxYear"},
-    {"filter": "year(datum.year)>minYear"}
+    {
+      "filter": "year(datum.year)<maxYear"
+    },
+    {
+      "filter": "year(datum.year)>minYear"
+    }
   ],
   "encoding": {
     "x": {
       "timeUnit": "year",
       "field": "year",
-      "axis": {"format": "%Y", "grid": false, "tickCount": 7},
+      "axis": {
+        "format": "%Y",
+        "grid": false,
+        "tickCount": 7
+      },
       "title": "Year"
     },
     "y": {
@@ -50,7 +63,14 @@
     "color": {
       "field": "Type",
       "title": "Industry Name",
-      "scale": {"range": ["#F25F5C", "#FFE066", "#247BA0", "#70C1B3"]}
+      "scale": {
+        "range": [
+          "#F25F5C",
+          "#FFE066",
+          "#247BA0",
+          "#70C1B3"
+        ]
+      }
     },
     "tooltip": [
       {
