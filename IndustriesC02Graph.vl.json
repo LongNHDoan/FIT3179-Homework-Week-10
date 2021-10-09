@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 200,
+  "title": "CO2 Emision by Industries",
+  "data": {
+    "url": "https://raw.githubusercontent.com/LongNHDoan/FIT3179-Homework-Week-10/main/IndustryCo2.csv"
+  },
+  "params": [
+    {
+      "name": "minYear",
+      "value": 1900,
+      "bind": {
+        "input": "range",
+        "min": 1900,
+        "max": 2000,
+        "step": 1,
+        "name": "Minimum year"
+      }
+    },
+    {
+      "name": "maxYear",
+      "value": 2019,
+      "bind": {
+        "input": "range",
+        "min": 1900,
+        "max": 2019,
+        "step": 1,
+        "name": "Maximum year"
+      }
+    }
+  ],
+  "mark": {"type": "area", "line": {"color": "darkgreen"}},
+  "transform": [
+    {"filter": "year(datum.year)<maxYear"},
+    {"filter": "year(datum.year)>minYear"}
+  ],
+  "encoding": {
+    "x": {
+      "timeUnit": "year",
+      "field": "year",
+      "axis": {"format": "%Y", "grid": false, "tickCount": 7},
+      "title": "Year"
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "Co2 Emission",
+      "title": "CO2 Emission (Million Tons)"
+    },
+    "color": {
+      "field": "Type",
+      "title": "Industry Name",
+      "scale": {"range": ["#F25F5C", "#FFE066", "#247BA0", "#70C1B3"]}
+    },
+    "tooltip": [
+      {
+        "field": "sum_Co2 Emission",
+        "type": "quantitative",
+        "title": "Total C02 Emission:"
+      }
+    ]
+  },
+  "config": {}
+}
